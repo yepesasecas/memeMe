@@ -30,12 +30,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         super.viewDidLoad()
         self.takePictureBtn.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
         self.imageView.contentMode = .scaleAspectFit
-        self.topText.defaultTextAttributes = memeTextAttributes
-        self.topText.textAlignment = .center
-        self.topText.delegate = self
-        self.bottomText.defaultTextAttributes = memeTextAttributes
-        self.bottomText.textAlignment = .center
-        self.bottomText.delegate = self
+        configure(textField: self.topText, withText: "TOP")
+        configure(textField: self.bottomText, withText: "BOTTOM")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -57,12 +53,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     @IBAction func share(_ sender: Any) {
-        if let image = self.imageView.image{
-            let meme = Meme(topText: self.topText.text!, bottomText: self.bottomText.text!, image: image, memeImage: generateMemedImage())
-            let activityView = UIActivityViewController(activityItems: [meme.memeImage], applicationActivities: nil)
+        if let _ = self.imageView.image {
+            let memedImage = generateMemedImage()
+            let activityView = UIActivityViewController(activityItems: [memedImage], applicationActivities: nil)
             activityView.completionWithItemsHandler = { (type,completed,items,error) in
-                print("activity completionWithItemsHandler executed.")
-                UIImageWriteToSavedPhotosAlbum(meme.memeImage, nil, nil, nil)
+                if completed {
+                    print("activity completionWithItemsHandler executed.")
+                    self.save()
+                }
             }
             present(activityView, animated: true, completion: nil)
         }
@@ -72,17 +70,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     @IBAction func album(_ sender: Any) {
-        let imagePicker = UIImagePickerController.init()
-        imagePicker.delegate = self
-        imagePicker.sourceType = .photoLibrary
-        present(imagePicker, animated: true, completion: nil)
+        presentImagePickerWith(sourceType: .photoLibrary)
     }
     
     @IBAction func takePicture(_ sender: Any) {
-        let imagePicker =  UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = .camera
-        present(imagePicker, animated: true, completion: nil)
+        presentImagePickerWith(sourceType: .camera)
     }
     
     // MARK: - UIImagePickerControllerDelegate
@@ -162,17 +154,38 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     // MARK: - Methods
     
     func generateMemedImage() -> UIImage {
-        self.navBar.isHidden = true
-        self.toolBar.isHidden = true
+        configureBars(hidden: true)
         
         UIGraphicsBeginImageContext(self.view.frame.size)
         view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
         let memedImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         
-        self.navBar.isHidden = false
-        self.toolBar.isHidden = false
+        configureBars(hidden: false)
         return memedImage
+    }
+    
+    func configureBars(hidden: Bool) {
+        self.navBar.isHidden = hidden
+        self.toolBar.isHidden = hidden
+    }
+    
+    func configure(textField: UITextField, withText text:String) {
+        textField.defaultTextAttributes = memeTextAttributes
+        textField.textAlignment = .center
+        textField.delegate = self
+        textField.text = text
+    }
+    
+    func presentImagePickerWith(sourceType: UIImagePickerControllerSourceType) {
+        let imagePicker = UIImagePickerController.init()
+        imagePicker.delegate = self
+        imagePicker.sourceType = sourceType
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
+    func save() {
+        let meme = Meme(topText: self.topText.text!, bottomText: self.bottomText.text!, image: self.imageView.image!, memeImage: generateMemedImage())
     }
 }
 

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Meme: NSObject {
+struct Meme{
     let topText: String
     let bottomText: String
     let image: UIImage
@@ -19,17 +19,5 @@ class Meme: NSObject {
         self.bottomText = bottomText
         self.image = image
         self.memeImage = memeImage
-    }
-    
-    override var description: String {
-        get {
-            return """
-            Meme
-            topText: \(self.topText)
-            bottomText: \(self.bottomText)
-            image: \(self.image)
-            memeImage: \(self.memeImage)
-            """
-        }
     }
 }
