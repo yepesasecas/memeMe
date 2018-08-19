@@ -17,6 +17,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var toolBar: UIToolbar!
+    
     let memeTextAttributes:[String: Any] = [
         NSAttributedStringKey.strokeColor.rawValue: UIColor.black,
         NSAttributedStringKey.foregroundColor.rawValue: UIColor.white,
@@ -47,9 +48,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     // MARK: - Actions
     
     @IBAction func cancel(_ sender: Any) {
-        self.topText.text = "TOP"
-        self.bottomText.text = "BOTTOM"
-        self.imageView.image = nil
+        self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func share(_ sender: Any) {
@@ -186,6 +185,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     func save() {
         let meme = Meme(topText: self.topText.text!, bottomText: self.bottomText.text!, image: self.imageView.image!, memeImage: generateMemedImage())
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.memes.append(meme)
+        self.dismiss(animated: true, completion: nil)
     }
 }
 
