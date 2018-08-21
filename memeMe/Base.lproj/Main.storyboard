@@ -175,7 +175,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9bY-0f-dvU">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="579"/>
                             </imageView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sOM-wZ-wpU">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -232,17 +232,17 @@
                             <constraint firstAttribute="bottom" secondItem="L2j-Vo-Nbj" secondAttribute="bottom" id="701-Jn-DFN"/>
                             <constraint firstItem="abq-aH-JYy" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="8Gp-gp-B3q"/>
                             <constraint firstItem="sOM-wZ-wpU" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="8Rg-mo-Avd"/>
-                            <constraint firstAttribute="bottom" secondItem="9bY-0f-dvU" secondAttribute="bottom" id="8jo-E3-LVK"/>
-                            <constraint firstItem="9bY-0f-dvU" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Iql-XB-8je"/>
                             <constraint firstItem="sOM-wZ-wpU" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Kim-QN-QtL"/>
                             <constraint firstItem="L2j-Vo-Nbj" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="NRo-IO-8Qh"/>
+                            <constraint firstItem="L2j-Vo-Nbj" firstAttribute="top" secondItem="9bY-0f-dvU" secondAttribute="bottom" id="P65-2f-YRO"/>
+                            <constraint firstItem="9bY-0f-dvU" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="VNJ-Qu-mD3"/>
+                            <constraint firstItem="9bY-0f-dvU" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="X6I-dA-spD"/>
                             <constraint firstAttribute="trailing" secondItem="L2j-Vo-Nbj" secondAttribute="trailing" id="cAu-LR-Zws"/>
-                            <constraint firstAttribute="trailing" secondItem="9bY-0f-dvU" secondAttribute="trailing" id="dsk-lk-qGT"/>
                             <constraint firstAttribute="trailing" secondItem="sOM-wZ-wpU" secondAttribute="trailing" id="eOh-7B-86T"/>
                             <constraint firstItem="L2j-Vo-Nbj" firstAttribute="top" secondItem="GYE-NI-fyp" secondAttribute="bottom" constant="20" id="gcv-Ne-f4b"/>
                             <constraint firstItem="abq-aH-JYy" firstAttribute="top" secondItem="sOM-wZ-wpU" secondAttribute="bottom" constant="20" id="jIs-7l-akG"/>
                             <constraint firstItem="abq-aH-JYy" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="nLF-7x-opI"/>
-                            <constraint firstItem="9bY-0f-dvU" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="qUk-XN-WBN"/>
+                            <constraint firstItem="9bY-0f-dvU" firstAttribute="top" secondItem="sOM-wZ-wpU" secondAttribute="bottom" id="t6t-HV-eVc"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -257,7 +257,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1617" y="-188"/>
+            <point key="canvasLocation" x="1616.8" y="-188.45577211394306"/>
         </scene>
         <!--Meme Me Details View Controller-->
         <scene sceneID="s1B-0P-T9l">
@@ -313,6 +313,6 @@
         <image name="table" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="se5-mT-zFE"/>
+        <segue reference="JZ4-nj-sWe"/>
     </inferredMetricsTieBreakers>
 </document>
