@@ -26,6 +26,12 @@ class MemeMeCollectionViewController: UICollectionViewController {
         self.memes = appDelegate.memes
         self.collectionView?.reloadData()
     }
+    
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        setFlowLayout()
+    }
 
     // MARK: UICollectionViewDataSource
 
@@ -58,10 +64,7 @@ class MemeMeCollectionViewController: UICollectionViewController {
         }
     }
     
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        setFlowLayout()
-    }
+    // MARK: Helpers
     
     func setFlowLayout() {
         let space:CGFloat = 3.0
